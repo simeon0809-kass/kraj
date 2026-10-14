@@ -1,0 +1,210 @@
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
+@import 'tailwindcss';
+
+@source '../../vendor/laravel/framework/src/Illuminate/Pagination/resources/views/*.blade.php';
+@source '../../storage/framework/views/*.php';
+@source '../**/*.blade.php';
+@source '../**/*.js';
+@source "../../app/Livewire/**/*.php";
+
+@theme {
+  --font-sans: 'Instrument Sans', ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji',
+    'Segoe UI Symbol', 'Noto Color Emoji';
+  --background-image-figma-gradient: linear-gradient(to bottom,
+      #FFFFFF 0%,
+      #6A92D4 25%,
+      rgb(46 88 158 / 83%) 50%,
+      #6A92D4 75%,
+      #FFFFFF 100%);
+  --font-montserrat: "montserrat";
+}
+
+/* Activities page */
+/* Hidden by default on larger screens */
+.dot-indicator {
+  display: none;
+  gap: 8px;
+  justify-content: center;
+  margin-top: 16px;
+}
+
+/* Only visible on screens 768px wide or smaller */
+@media (max-width: 768px) {
+  .dot-indicator {
+    display: flex;
+  }
+}
+
+.dot {
+  width: 12px;
+  height: 12px;
+  border-radius: 9999px;
+  border: 2px solid #1a1a2e;
+  background: transparent;
+  transition: all 0.3s ease;
+  flex-shrink: 0;
+}
+
+.dot.active {
+  width: 32px;
+  background: #1a1a2e;
+  border-color: #1a1a2e;
+}
+
+/* Contact page */
+.hidden-step {
+  display: none !important;
+}
+
+.fade-in {
+  animation: fadeIn 0.4s ease-in-out;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Custom Scrollbar for the Time Slots */
+.custom-scrollbar::-webkit-scrollbar {
+  width: 6px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-track {
+  background: rgba(30, 41, 59, 0.3);
+  /* Transparent slate-800 */
+  border-radius: 10px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb {
+  background: rgba(71, 85, 105, 0.8);
+  /* Slate-600 */
+  border-radius: 10px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb:hover {
+  background: rgba(148, 163, 184, 1);
+  /* Slate-400 on hover */
+}
+
+/* Crafts page */
+
+.animate-marquee {
+  display: flex;
+  width: max-content;
+  animation: marquee 40s linear infinite;
+  animation-delay: -6s;
+}
+
+@keyframes marquee {
+  0% {
+    transform: translateX(100vw);
+  }
+
+  100% {
+    transform: translateX(-100%);
+  }
+}
+
+.marquee-container:hover .animate-marquee {
+  animation-play-state: paused;
+}
+
+.image-gallery {
+  display: flex;
+}
+
+@media (min-width: 768px) {
+  .image-gallery {
+    flex-direction: row;
+  }
+
+  .gallery-img {
+    transition: width 0.5s ease-in-out, flex 0.5s ease-in-out;
+    flex: 1 1 0;
+    min-width: 0;
+  }
+}
+
+@media (max-width: 767px) {
+  .image-gallery {
+    flex-direction: column;
+  }
+
+  .gallery-img {
+    width: 100% !important;
+    height: 80px;
+    transition: height 0.5s ease-in-out;
+    border-radius: 1rem;
+  }
+
+  .gallery-img.expanded-mobile {
+    height: 260px !important;
+  }
+}
+
+/* Desktop expanded state */
+@media (min-width: 768px) {
+  .gallery-img.expanded-desktop {
+    flex: 2 !important;
+  }
+
+  .gallery-img:not(.expanded-desktop) {
+    flex: 0.5 !important;
+  }
+}
+
+/* Mobile expanded state */
+@media (max-width: 767px) {
+  .gallery-img.expanded-mobile {
+    height: 260px !important;
+  }
+}
+
+/* Products page */
+
+@keyframes fadeInProd {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+/* Animation for the blue modal box: scales up slightly and fades in */
+@keyframes popInProd {
+  from {
+    opacity: 0;
+    transform: scale(0.9);
+  }
+
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+/* Active states used when modal is open */
+.modal-overlay-active {
+  display: flex !important;
+  animation: fadeInProd 0.3s ease-out forwards;
+}
+
+.modal-box-active {
+  animation: popInProd 0.3s ease-out forwards;
+}
+
+.bg-2 {
+  background: linear-gradient(0deg,
+      #29589eb3,
+      #FFF);
+}
